@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 64" fill="none" role="img" aria-label="TXT — The Web3 Knowledge Protocol">
+  <defs>
+    <linearGradient id="txtMarkGrad" x1="8" y1="8" x2="56" y2="56" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#C6F700"/>
+      <stop offset="1" stop-color="#E8FF66"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Mark -->
+  <rect x="2" y="2" width="60" height="60" rx="16" fill="#0A0A0A"/>
+  <rect x="2.75" y="2.75" width="58.5" height="58.5" rx="15.25" stroke="url(#txtMarkGrad)" stroke-width="1.5" opacity="0.9"/>
+  <rect x="18" y="16" width="28" height="32" rx="4" fill="none" stroke="#C6F700" stroke-width="2"/>
+  <path d="M24 24h16" stroke="#C6F700" stroke-width="3" stroke-linecap="round"/>
+  <path d="M32 24v16" stroke="#C6F700" stroke-width="3" stroke-linecap="round"/>
+  <path d="M24 34h8M24 39h12" stroke="#C6F700" stroke-width="1.75" stroke-linecap="round" opacity="0.55"/>
+  <circle cx="44" cy="44" r="3.5" fill="#C6F700"/>
+  <circle cx="44" cy="44" r="6" stroke="#C6F700" stroke-width="1" opacity="0.35"/>
+
+  <!-- Wordmark TXT -->
+  <text
+    x="78"
+    y="40"
+    fill="#FFFFFF"
+    font-family="Space Grotesk, Inter, system-ui, sans-serif"
+    font-size="32"
+    font-weight="700"
+    letter-spacing="-0.04em"
+  >TXT</text>
+  <!-- Accent dot -->
+  <circle cx="148" cy="36" r="3.5" fill="#C6F700"/>
+
+  <!-- Tagline -->
+  <text
+    x="162"
+    y="38"
+    fill="#A0A0A0"
+    font-family="Inter, system-ui, sans-serif"
+    font-size="11"
+    font-weight="500"
+    letter-spacing="0.14em"
+  >KNOWLEDGE</text>
+</svg>

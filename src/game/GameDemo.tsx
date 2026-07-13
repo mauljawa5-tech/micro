@@ -317,7 +317,12 @@ export default function GameDemo({ open, onClose }: Props) {
 
       <header className="game-header">
         <div className="game-brand">
-          <div className="game-brand-mark">T</div>
+          <svg width="32" height="32" viewBox="0 0 64 64" fill="none" aria-hidden>
+            <rect width="64" height="64" rx="14" fill="#C6F700" />
+            <path d="M20 22h24" stroke="#0A0A0A" strokeWidth="3.5" strokeLinecap="round" />
+            <path d="M32 22v22" stroke="#0A0A0A" strokeWidth="3.5" strokeLinecap="round" />
+            <circle cx="44" cy="44" r="4" fill="#0A0A0A" />
+          </svg>
           Knowledge Rush
           <span>Demo Game</span>
         </div>

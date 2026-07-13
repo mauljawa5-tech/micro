@@ -24,6 +24,7 @@ import {
   Vote,
   Gift,
   Lock,
+  Shield,
   Menu,
   X,
   ArrowRight,
@@ -50,6 +51,7 @@ import {
 } from './wallet'
 import GameDemo, { GameLaunchCard } from './game/GameDemo'
 import CrosswordGame, { CrosswordLaunchCard } from './game/CrosswordGame'
+import Logo from './components/Logo'
 import './App.css'
 
 /* ─── Animation helpers ─── */
@@ -89,13 +91,13 @@ function FadeIn({
 
 /* ─── Data ─── */
 const NAV_LINKS = [
+  { label: 'How It Works', href: '#how-it-works' },
   { label: 'Features', href: '#features' },
-  { label: 'AI Tools', href: '#ai' },
-  { label: 'Library', href: '#library' },
-  { label: 'Games', href: '#game' },
-  { label: 'TTS English', href: '#crossword' },
-  { label: 'Tokenomics', href: '#tokenomics' },
+  { label: 'Utility', href: '#utility' },
   { label: 'Roadmap', href: '#roadmap' },
+  { label: 'Tokenomics', href: '#tokenomics' },
+  { label: 'Details', href: '#details' },
+  { label: 'Games', href: '#game' },
 ]
 
 const FEATURES = [
@@ -207,6 +209,51 @@ const MARKET_ITEMS = [
   { icon: BookOpen, title: 'Digital Books', desc: 'Own forever editions of books minted as digital assets.', price: '150 $TXT' },
 ]
 
+const HOW_IT_WORKS = [
+  {
+    num: '01',
+    title: 'Connect Wallet',
+    desc: 'Link your wallet on Robinhood Chain. Your identity becomes your creator profile — no platform middlemen.',
+    detail: 'Supports standard EIP-1193 wallets (MetaMask & more).',
+    icon: Wallet,
+  },
+  {
+    num: '02',
+    title: 'Write or Generate',
+    desc: 'Draft articles, tutorials, research, or prompts. Use TXT AI to write, edit, translate, and summarize faster.',
+    detail: 'AI tools unlock with $TXT access tiers.',
+    icon: PenLine,
+  },
+  {
+    num: '03',
+    title: 'Publish On-Chain',
+    desc: 'Mint your work as a permanent knowledge asset. Ownership, provenance, and royalties stay with you.',
+    detail: 'Every publication is a digital asset you control.',
+    icon: FileText,
+  },
+  {
+    num: '04',
+    title: 'Discover & Trade',
+    desc: 'Readers explore TXT Library, unlock premium pieces on the Marketplace, and tip creators in $TXT.',
+    detail: 'Payments settle natively in $TXT.',
+    icon: ShoppingBag,
+  },
+  {
+    num: '05',
+    title: 'Earn & Stake',
+    desc: 'Collect sales, tips, and creator incentives. Stake $TXT for rewards and long-term alignment.',
+    detail: 'Community Rewards pool fuels the flywheel.',
+    icon: Coins,
+  },
+  {
+    num: '06',
+    title: 'Govern the DAO',
+    desc: 'Vote on featured content, grants, upgrades, and treasury allocation with staked $TXT.',
+    detail: 'Knowledge should belong to everyone.',
+    icon: Vote,
+  },
+]
+
 const CREATOR_STEPS = [
   { num: '01', title: 'Write & Publish', desc: 'Create content and mint it as an on-chain knowledge asset with permanent ownership.' },
   { num: '02', title: 'Get Discovered', desc: 'Reach readers via TXT Library categories, AI recommendations, and community curation.' },
@@ -215,37 +262,190 @@ const CREATOR_STEPS = [
 ]
 
 const UTILITIES = [
-  { icon: PenLine, title: 'Publish Content', desc: 'Pay gas and fees to mint knowledge assets on-chain.' },
-  { icon: ShoppingBag, title: 'Buy Publications', desc: 'Unlock premium articles, books, and research.' },
-  { icon: Brain, title: 'AI Writing Tools', desc: 'Access the full suite of TXT AI features.' },
-  { icon: Lock, title: 'Exclusive Libraries', desc: 'Enter gated knowledge vaults and archives.' },
-  { icon: Gift, title: 'Tip Creators', desc: 'Reward valuable writing instantly in $TXT.' },
-  { icon: Layers, title: 'Stake for Rewards', desc: 'Earn yield by securing the knowledge network.' },
-  { icon: Vote, title: 'Governance', desc: 'Shape protocol decisions through the DAO.' },
-  { icon: GraduationCap, title: 'Education Access', desc: 'Purchase courses and learning resources.' },
+  {
+    icon: PenLine,
+    title: 'Publish Content',
+    category: 'Create',
+    desc: 'Pay network and protocol fees to mint articles, tutorials, whitepapers, and prompt libraries as on-chain assets.',
+    use: 'Mint · Update · Archive',
+  },
+  {
+    icon: ShoppingBag,
+    title: 'Buy Publications',
+    category: 'Marketplace',
+    desc: 'Unlock premium articles, research reports, digital books, courses, and templates — settled entirely in $TXT.',
+    use: 'One-time · Subscription vaults',
+  },
+  {
+    icon: Brain,
+    title: 'AI Writing Tools',
+    category: 'AI',
+    desc: 'Spend or stake $TXT to access AI Writer, Editor, Translator, Summarizer, Prompt Generator, and Docs Assistant.',
+    use: 'Credits · Pro tiers',
+  },
+  {
+    icon: Lock,
+    title: 'Exclusive Libraries',
+    category: 'Access',
+    desc: 'Hold or spend $TXT to enter gated knowledge vaults, early research drops, and verified archives.',
+    use: 'Hold-to-access · Passes',
+  },
+  {
+    icon: Gift,
+    title: 'Tip Creators',
+    category: 'Social',
+    desc: 'Reward high-signal writing instantly. Tips route to creators with optional protocol micro-fees.',
+    use: 'Instant tips · Boosts',
+  },
+  {
+    icon: Layers,
+    title: 'Stake for Rewards',
+    category: 'Earn',
+    desc: 'Stake $TXT to earn from the Community Rewards pool and strengthen long-term network alignment.',
+    use: 'Flexible · Locked tiers',
+  },
+  {
+    icon: Vote,
+    title: 'Governance',
+    category: 'DAO',
+    desc: 'Vote on featured content, ecosystem grants, creator incentives, platform upgrades, and treasury moves.',
+    use: '1 staked TXT · 1 vote weight',
+  },
+  {
+    icon: GraduationCap,
+    title: 'Education Access',
+    category: 'Learn',
+    desc: 'Purchase courses, certifications, and educational resource packs that live as ownable knowledge assets.',
+    use: 'Courses · Certificates',
+  },
+]
+
+const UTILITY_FLOWS = [
+  { title: 'Creators', items: ['Publish & mint', 'Sell premium work', 'Receive tips', 'Claim incentives'] },
+  { title: 'Readers', items: ['Unlock content', 'Tip writers', 'Join libraries', 'Buy courses'] },
+  { title: 'AI Users', items: ['Writer credits', 'Editor polish', 'Translate docs', 'Prompt packs'] },
+  { title: 'Governors', items: ['Stake $TXT', 'Vote proposals', 'Fund grants', 'Curate featured'] },
 ]
 
 const ROADMAP = [
   {
     phase: 'Phase 01',
+    quarter: 'Q1–Q2',
     title: 'Genesis',
-    items: ['Token launch on Robinhood Chain', 'Core publishing protocol', 'TXT Library v1', 'Community channels live'],
+    status: 'In Progress',
+    statusKey: 'progress' as const,
+    summary: 'Launch the token, core publish rail, and first knowledge archive.',
+    items: [
+      'Token launch on Robinhood Chain',
+      'Core publishing protocol (mint knowledge assets)',
+      'TXT Library v1 — 8 knowledge domains',
+      'Wallet connect + creator profiles',
+      'Community channels (X, Discord, docs)',
+      'Landing, brand, and demo experiences',
+    ],
   },
   {
     phase: 'Phase 02',
+    quarter: 'Q2–Q3',
     title: 'Intelligence',
-    items: ['TXT AI suite launch', 'Prompt marketplace', 'Creator staking', 'Mobile-responsive app'],
+    status: 'Upcoming',
+    statusKey: 'upcoming' as const,
+    summary: 'Ship TXT AI and the first creator earn loops.',
+    items: [
+      'TXT AI suite (Writer, Editor, Translator, Summarizer)',
+      'Prompt Generator + Documentation Assistant',
+      'Prompt marketplace pilot',
+      'Creator staking & early rewards',
+      'Mobile-responsive web app',
+      'On-chain content provenance badges',
+    ],
   },
   {
     phase: 'Phase 03',
+    quarter: 'Q3–Q4',
     title: 'Economy',
-    items: ['Full marketplace live', 'Premium content rails', 'DAO governance portal', 'Ecosystem grants program'],
+    status: 'Planned',
+    statusKey: 'planned' as const,
+    summary: 'Full marketplace, premium rails, and DAO control.',
+    items: [
+      'Full TXT Marketplace (articles, courses, books)',
+      'Premium content unlock rails in $TXT',
+      'DAO governance portal live',
+      'Ecosystem grants program',
+      'Creator incentives distribution',
+      'Treasury transparency dashboard',
+    ],
   },
   {
     phase: 'Phase 04',
+    quarter: '2027+',
     title: 'Expansion',
-    items: ['Cross-chain knowledge bridges', 'Enterprise docs tools', 'AI knowledge graph', 'Global creator network'],
+    status: 'Vision',
+    statusKey: 'vision' as const,
+    summary: 'Scale KnowledgeFi globally with AI and interoperability.',
+    items: [
+      'Cross-chain knowledge bridges',
+      'Enterprise documentation tools',
+      'AI knowledge graph across the library',
+      'Global creator network & regional hubs',
+      'Advanced reputation & curation models',
+      'Institutional research partnerships',
+    ],
   },
+]
+
+const ADDITIONAL_DETAILS = [
+  {
+    icon: Network,
+    title: 'Blockchain',
+    body: 'Native deployment on Robinhood Chain for fast settlement and consumer-ready distribution of knowledge assets.',
+  },
+  {
+    icon: FileText,
+    title: 'Content types',
+    body: 'Articles, blogs, tutorials, whitepapers, research, documentation, prompt libraries, courses, and digital books.',
+  },
+  {
+    icon: Brain,
+    title: 'AI infrastructure',
+    body: 'TXT AI is the creation layer — assist writing, editing, translation, summaries, and structured documentation.',
+  },
+  {
+    icon: BookOpen,
+    title: 'Knowledge domains',
+    body: 'Library categories: AI, Crypto, Trading, Programming, Design, Finance, Education, and Gaming.',
+  },
+  {
+    icon: Shield,
+    title: 'Ownership model',
+    body: 'Publish once, own forever. Content is minted as an on-chain asset with creator-controlled rights and monetization.',
+  },
+  {
+    icon: Users,
+    title: 'DAO governance',
+    body: 'Community steers featured content, grants, incentives, upgrades, and treasury allocation via staked $TXT.',
+  },
+  {
+    icon: Coins,
+    title: 'Token supply',
+    body: 'Fixed total supply of 1,000,000,000 $TXT. 40% community rewards, 25% ecosystem, 15% creators, 10% liquidity, 10% team.',
+  },
+  {
+    icon: Zap,
+    title: 'Value loop',
+    body: 'Write → Own → Earn. Readers pay in $TXT, creators earn, stakers secure the network, DAO reinvests in growth.',
+  },
+]
+
+const DETAIL_SPECS = [
+  { label: 'Token name', value: 'TXT' },
+  { label: 'Ticker', value: '$TXT' },
+  { label: 'Chain', value: 'Robinhood Chain' },
+  { label: 'Category', value: 'KnowledgeFi' },
+  { label: 'Total supply', value: '1,000,000,000' },
+  { label: 'Standard', value: 'Native utility token' },
+  { label: 'Tagline', value: 'Write. Own. Earn.' },
+  { label: 'Vision', value: 'Knowledge belongs to everyone' },
 ]
 
 const ALLOCATIONS = [
@@ -415,11 +615,8 @@ export default function App() {
       {/* NAVBAR */}
       <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
         <div className="container nav-inner">
-          <a href="#" className="logo">
-            <div className="logo-mark">T</div>
-            <span>
-              TXT<em>.</em>
-            </span>
+          <a href="#" className="logo" aria-label="TXT home">
+            <Logo variant="wordmark" size={36} />
           </a>
 
           <div className="nav-links">
@@ -816,6 +1013,129 @@ export default function App() {
         </div>
       </section>
 
+      {/* BRAND / LOGO */}
+      <section className="section" id="brand">
+        <div className="container">
+          <FadeIn>
+            <div className="section-header">
+              <div className="section-label">Brand Identity</div>
+              <h2 className="section-title">
+                The <span className="gradient-text">TXT</span> mark
+              </h2>
+              <p className="section-desc">
+                A document-T with an on-chain node — writing meets ownership. Primary lime on deep
+                black for premium Web3 presence.
+              </p>
+            </div>
+          </FadeIn>
+
+          <div className="brand-logo-showcase">
+            <FadeIn>
+              <div className="brand-logo-card glass">
+                <Logo variant="full" size={72} />
+                <p className="brand-logo-meta">Full lockup · SVG</p>
+              </div>
+            </FadeIn>
+            <FadeIn delay={0.08}>
+              <div className="brand-logo-card glass">
+                <div className="variants">
+                  <Logo variant="icon" size={72} />
+                  <div className="on-light">
+                    <Logo variant="icon" size={56} />
+                  </div>
+                  <Logo variant="wordmark" size={44} />
+                </div>
+                <p className="brand-logo-meta">Icon · Inverse · Wordmark</p>
+              </div>
+            </FadeIn>
+          </div>
+
+          <FadeIn delay={0.1}>
+            <div className="specs-panel glass" style={{ marginTop: 24 }}>
+              <h3 className="specs-title">Logo system</h3>
+              <div className="specs-grid">
+                <div className="spec-row">
+                  <span className="spec-label">Primary</span>
+                  <span className="spec-value">#C6F700</span>
+                </div>
+                <div className="spec-row">
+                  <span className="spec-label">Background</span>
+                  <span className="spec-value">#0A0A0A</span>
+                </div>
+                <div className="spec-row">
+                  <span className="spec-label">Concept</span>
+                  <span className="spec-value">T + Document + Node</span>
+                </div>
+                <div className="spec-row">
+                  <span className="spec-label">Files</span>
+                  <span className="spec-value">/logo.svg · /logo-mark.svg</span>
+                </div>
+              </div>
+            </div>
+          </FadeIn>
+        </div>
+      </section>
+
+      {/* HOW IT WORKS */}
+      <section className="section" id="how-it-works">
+        <div className="container">
+          <FadeIn>
+            <div className="section-header">
+              <div className="section-label">How It Works</div>
+              <h2 className="section-title">
+                From idea to <span className="gradient-text">on-chain knowledge</span>
+              </h2>
+              <p className="section-desc">
+                Six simple steps to write, own, and earn inside the TXT protocol — no centralized
+                publisher required.
+              </p>
+            </div>
+          </FadeIn>
+
+          <div className="hiw-grid">
+            {HOW_IT_WORKS.map((step, i) => (
+              <FadeIn key={step.num} delay={i * 0.05}>
+                <article className="hiw-card glass">
+                  <div className="hiw-top">
+                    <span className="hiw-num">{step.num}</span>
+                    <div className="hiw-icon">
+                      <step.icon size={20} />
+                    </div>
+                  </div>
+                  <h3>{step.title}</h3>
+                  <p>{step.desc}</p>
+                  <span className="hiw-detail">{step.detail}</span>
+                </article>
+              </FadeIn>
+            ))}
+          </div>
+
+          <FadeIn delay={0.15}>
+            <div className="hiw-flow glass">
+              <div className="hiw-flow-step">
+                <strong>WRITE</strong>
+                <span>Create knowledge</span>
+              </div>
+              <span className="hiw-arrow">→</span>
+              <div className="hiw-flow-step">
+                <strong>OWN</strong>
+                <span>Mint on-chain</span>
+              </div>
+              <span className="hiw-arrow">→</span>
+              <div className="hiw-flow-step">
+                <strong>EARN</strong>
+                <span>Sell · tip · stake</span>
+              </div>
+              <span className="hiw-arrow">→</span>
+              <div className="hiw-flow-step accent">
+                <strong>GOVERN</strong>
+                <span>Shape the DAO</span>
+              </div>
+            </div>
+          </FadeIn>
+        </div>
+      </section>
+
       {/* CREATOR ECONOMY */}
       <section className="section" id="creators">
         <div className="container">
@@ -889,24 +1209,58 @@ export default function App() {
                 One token. <span className="gradient-text">Every interaction.</span>
               </h2>
               <p className="section-desc">
-                $TXT powers publishing, AI tools, marketplace, staking, tips, and governance.
+                $TXT is the native currency of the knowledge network — publish, unlock, tip, stake,
+                govern, and power AI tools.
               </p>
             </div>
           </FadeIn>
 
-          <div className="utility-grid">
+          <FadeIn>
+            <div className="utility-flows">
+              {UTILITY_FLOWS.map((flow) => (
+                <div key={flow.title} className="utility-flow-card glass">
+                  <h4>{flow.title}</h4>
+                  <ul>
+                    {flow.items.map((item) => (
+                      <li key={item}>
+                        <Check size={14} />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </FadeIn>
+
+          <div className="utility-grid utility-grid-rich">
             {UTILITIES.map((u, i) => (
               <FadeIn key={u.title} delay={i * 0.04}>
-                <div className="utility-card glass">
-                  <div className="utility-icon">
-                    <u.icon size={20} />
+                <div className="utility-card glass utility-card-rich">
+                  <div className="utility-card-head">
+                    <div className="utility-icon">
+                      <u.icon size={20} />
+                    </div>
+                    <span className="utility-cat">{u.category}</span>
                   </div>
                   <h4>{u.title}</h4>
                   <p>{u.desc}</p>
+                  <div className="utility-use">{u.use}</div>
                 </div>
               </FadeIn>
             ))}
           </div>
+
+          <FadeIn delay={0.1}>
+            <div className="utility-note glass">
+              <Zap size={18} color="#C6F700" />
+              <p>
+                <strong>$TXT powers the loop:</strong> creators mint and monetize · readers unlock
+                and tip · AI users spend credits · governors stake and vote · the DAO reinvests in
+                KnowledgeFi growth.
+              </p>
+            </div>
+          </FadeIn>
         </div>
       </section>
 
@@ -920,27 +1274,35 @@ export default function App() {
                 Building the future of <span className="gradient-text">KnowledgeFi</span>
               </h2>
               <p className="section-desc">
-                A clear path from genesis to global knowledge network.
+                A clear path from genesis to a global decentralized knowledge network — with status
+                and deliverables per phase.
               </p>
             </div>
           </FadeIn>
 
-          <div className="roadmap">
-            <div className="roadmap-line" />
+          <div className="roadmap-cards">
             {ROADMAP.map((r, i) => (
-              <FadeIn key={r.phase} delay={i * 0.08}>
-                <div className="roadmap-item">
-                  <div className="roadmap-dot" />
-                  <div className="roadmap-content glass">
-                    <div className="roadmap-phase">{r.phase}</div>
-                    <h4>{r.title}</h4>
-                    <ul>
-                      {r.items.map((item) => (
-                        <li key={item}>{item}</li>
-                      ))}
-                    </ul>
+              <FadeIn key={r.phase} delay={i * 0.06}>
+                <article className={`roadmap-card glass status-${r.statusKey}`}>
+                  <div className="roadmap-card-top">
+                    <div>
+                      <div className="roadmap-phase">
+                        {r.phase} · {r.quarter}
+                      </div>
+                      <h4>{r.title}</h4>
+                    </div>
+                    <span className={`roadmap-status status-${r.statusKey}`}>{r.status}</span>
                   </div>
-                </div>
+                  <p className="roadmap-summary">{r.summary}</p>
+                  <ul>
+                    {r.items.map((item) => (
+                      <li key={item}>
+                        <Check size={14} />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </article>
               </FadeIn>
             ))}
           </div>
@@ -1004,6 +1366,52 @@ export default function App() {
               </div>
             </FadeIn>
           </div>
+        </div>
+      </section>
+
+      {/* ADDITIONAL DETAILS */}
+      <section className="section" id="details">
+        <div className="container">
+          <FadeIn>
+            <div className="section-header">
+              <div className="section-label">Additional Details</div>
+              <h2 className="section-title">
+                Protocol <span className="gradient-text">deep dive</span>
+              </h2>
+              <p className="section-desc">
+                Technical and product details behind TXT — chain, content model, AI layer, ownership,
+                and token design.
+              </p>
+            </div>
+          </FadeIn>
+
+          <div className="details-grid">
+            {ADDITIONAL_DETAILS.map((d, i) => (
+              <FadeIn key={d.title} delay={i * 0.04}>
+                <article className="detail-card glass">
+                  <div className="detail-icon">
+                    <d.icon size={20} />
+                  </div>
+                  <h3>{d.title}</h3>
+                  <p>{d.body}</p>
+                </article>
+              </FadeIn>
+            ))}
+          </div>
+
+          <FadeIn delay={0.1}>
+            <div className="specs-panel glass">
+              <h3 className="specs-title">Quick specs</h3>
+              <div className="specs-grid">
+                {DETAIL_SPECS.map((s) => (
+                  <div key={s.label} className="spec-row">
+                    <span className="spec-label">{s.label}</span>
+                    <span className="spec-value">{s.value}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </FadeIn>
         </div>
       </section>
 
@@ -1130,11 +1538,8 @@ export default function App() {
         <div className="container">
           <div className="footer-grid">
             <div className="footer-brand">
-              <a href="#" className="logo">
-                <div className="logo-mark">T</div>
-                <span>
-                  TXT<em>.</em>
-                </span>
+              <a href="#" className="logo" aria-label="TXT home">
+                <Logo variant="wordmark" size={36} />
               </a>
               <p>
                 The Web3 Knowledge & Creator Protocol. Every article, tutorial, and publication becomes an on-chain asset.
@@ -1142,23 +1547,22 @@ export default function App() {
             </div>
             <div className="footer-col">
               <h5>Protocol</h5>
+              <a href="#how-it-works">How It Works</a>
               <a href="#features">Features</a>
               <a href="#ai">AI Tools</a>
-              <a href="#library">Library</a>
-              <a href="#marketplace">Marketplace</a>
+              <a href="#details">Details</a>
             </div>
             <div className="footer-col">
               <h5>Token</h5>
+              <a href="#utility">$TXT Utility</a>
               <a href="#tokenomics">Tokenomics</a>
-              <a href="#utility">Utility</a>
               <a href="#roadmap">Roadmap</a>
               <a href="#community">DAO</a>
             </div>
             <div className="footer-col">
               <h5>Resources</h5>
-              <a href="#crossword">TTS English</a>
-              <a href="#game">Games</a>
               <a href="#creators">Creators</a>
+              <a href="#game">Games</a>
               <a href="#connect">Connect Wallet</a>
               <a href="#">Whitepaper</a>
             </div>

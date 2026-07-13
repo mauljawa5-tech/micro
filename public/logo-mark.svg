@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" role="img" aria-label="TXT">
+  <defs>
+    <linearGradient id="txtGlow" x1="8" y1="8" x2="56" y2="56" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#C6F700"/>
+      <stop offset="1" stop-color="#E8FF66"/>
+    </linearGradient>
+  </defs>
+  <!-- Rounded square mark -->
+  <rect x="2" y="2" width="60" height="60" rx="16" fill="#0A0A0A"/>
+  <rect x="2.75" y="2.75" width="58.5" height="58.5" rx="15.25" stroke="url(#txtGlow)" stroke-width="1.5" opacity="0.9"/>
+  <!-- Abstract document / knowledge plate -->
+  <rect x="18" y="16" width="28" height="32" rx="4" fill="none" stroke="#C6F700" stroke-width="2"/>
+  <!-- T crossbar (writing bar) -->
+  <path d="M24 24h16" stroke="#C6F700" stroke-width="3" stroke-linecap="round"/>
+  <!-- T stem -->
+  <path d="M32 24v16" stroke="#C6F700" stroke-width="3" stroke-linecap="round"/>
+  <!-- Knowledge lines -->
+  <path d="M24 34h8M24 39h12" stroke="#C6F700" stroke-width="1.75" stroke-linecap="round" opacity="0.55"/>
+  <!-- On-chain node accent -->
+  <circle cx="44" cy="44" r="3.5" fill="#C6F700"/>
+  <circle cx="44" cy="44" r="6" stroke="#C6F700" stroke-width="1" opacity="0.35"/>
+</svg>

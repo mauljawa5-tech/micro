@@ -430,7 +430,12 @@ export default function CrosswordGame({ open, onClose }: Props) {
     >
       <header className="xw-header">
         <div className="xw-brand">
-          <div className="xw-brand-mark">T</div>
+          <svg width="32" height="32" viewBox="0 0 64 64" fill="none" aria-hidden>
+            <rect width="64" height="64" rx="14" fill="#C6F700" />
+            <path d="M20 22h24" stroke="#0A0A0A" strokeWidth="3.5" strokeLinecap="round" />
+            <path d="M32 22v22" stroke="#0A0A0A" strokeWidth="3.5" strokeLinecap="round" />
+            <circle cx="44" cy="44" r="4" fill="#0A0A0A" />
+          </svg>
           TTS English
           <em>Crossword</em>
         </div>

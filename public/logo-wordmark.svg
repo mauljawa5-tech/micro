@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 48" fill="none" role="img" aria-label="TXT">
+  <!-- Compact horizontal wordmark for nav -->
+  <rect x="0" y="4" width="40" height="40" rx="11" fill="#C6F700"/>
+  <path d="M12 16h16" stroke="#0A0A0A" stroke-width="2.8" stroke-linecap="round"/>
+  <path d="M20 16v16" stroke="#0A0A0A" stroke-width="2.8" stroke-linecap="round"/>
+  <circle cx="28" cy="30" r="2.2" fill="#0A0A0A"/>
+
+  <text
+    x="52"
+    y="32"
+    fill="#FFFFFF"
+    font-family="Space Grotesk, Inter, system-ui, sans-serif"
+    font-size="26"
+    font-weight="700"
+    letter-spacing="-0.03em"
+  >TXT</text>
+  <text
+    x="112"
+    y="32"
+    fill="#C6F700"
+    font-family="Space Grotesk, Inter, system-ui, sans-serif"
+    font-size="26"
+    font-weight="700"
+    letter-spacing="-0.03em"
+  >.</text>
+</svg>
